@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.oandaassignment.viewmodel.CurrencyViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_calc"
+        android:orientation="vertical"
+        android:padding="4dp"
+        android:weightSum="2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutSource"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_calc"
+            android:padding="4dp">
+
+
+            <TextView
+                android:id="@+id/textSourceNameAndPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextSource"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/item_border"
+                android:digits="0123456789"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:hint="Enter amount"
+                android:inputType="number|none"
+                android:maxLength="9"
+                android:maxLines="1"
+                android:onTextChanged="@{viewModel.onSourceTextChanged}"
+                android:padding="4dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/spinnerSource"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textSourceNameAndPrice"
+                app:layout_constraintWidth_percent="0.5" />
+
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerSource"
+                style="@android:style/Widget.Spinner"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:spinnerMode="dropdown"
+                android:onItemSelected="@{(parent,view,pos,id)->viewModel.onSourceSelectItem(parent,view,pos,id)}"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextSource"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editTextSource"
+                app:layout_constraintTop_toTopOf="@+id/editTextSource"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/textDestinationNameAndPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/editTextDestination"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextDestination"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/item_border"
+                android:digits="0123456789"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:hint="Enter amount"
+                android:inputType="number|none"
+                android:maxLength="9"
+                android:maxLines="1"
+                android:onTextChanged="@{viewModel.onDestinationTextChanged}"
+                android:padding="4dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/spinnerDestination"
+                app:layout_constraintEnd_toEndOf="@+id/editTextSource"
+                app:layout_constraintStart_toStartOf="@+id/editTextSource"
+                app:layout_constraintWidth_percent="0.5" />
+
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerDestination"
+                style="@android:style/Widget.Spinner"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="4dp"
+                android:spinnerMode="dropdown"
+                android:onItemSelected="@{(parent,view,pos,id)->viewModel.onDestinationSelectItem(parent,view,pos,id)}"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextDestination"
+                app:layout_constraintEnd_toEndOf="@+id/spinnerSource"
+                app:layout_constraintStart_toEndOf="@+id/editTextDestination"
+                app:layout_constraintTop_toTopOf="@+id/editTextDestination" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+</layout>
