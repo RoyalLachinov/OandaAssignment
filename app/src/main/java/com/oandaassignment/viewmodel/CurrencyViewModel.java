@@ -41,8 +41,8 @@ public class CurrencyViewModel extends AndroidViewModel {
             return;
         }
         currencyRepo = CurrencyRepo.getInstance();
-        //currencyRepo.getCurrencyNames(appDatabase.getCurrencyDao());
-        //currencyRepo.getCurrencyPrices(appDatabase.getCurrencyDao());
+        currencyRepo.getCurrencyNames(appDatabase.getCurrencyDao());
+        currencyRepo.getCurrencyPrices(appDatabase.getCurrencyDao());
 
     }
 
